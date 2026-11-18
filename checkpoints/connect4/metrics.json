@@ -1,0 +1,1001 @@
+{
+ "config": {
+  "game": "connect4",
+  "out_dir": "checkpoints/connect4",
+  "iterations": 30,
+  "games_per_iter": 160,
+  "games_in_parallel": 40,
+  "workers": 4,
+  "n_simulations": 100,
+  "c_puct": 1.5,
+  "dirichlet_alpha": 1.0,
+  "noise_frac": 0.25,
+  "temp_moves": 8,
+  "buffer_iters": 6,
+  "batch_size": 256,
+  "sample_reuse": 4.0,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "channels": 48,
+  "blocks": 3,
+  "eval_every": 3,
+  "eval_games": 30,
+  "eval_sims": 100,
+  "eval_opponents": [
+   {
+    "type": "random"
+   },
+   {
+    "type": "mcts",
+    "n_simulations": 200
+   },
+   {
+    "type": "mcts",
+    "n_simulations": 1000
+   }
+  ],
+  "seed": 0
+ },
+ "history": [
+  {
+   "iteration": 1,
+   "n_samples": 7760,
+   "buffer": 7760,
+   "steps": 122,
+   "loss": 2.499734001081498,
+   "loss_pi": 1.8924944801408736,
+   "loss_v": 0.607239518497811,
+   "selfplay_first_win": 0.5,
+   "selfplay_draw": 0.075,
+   "selfplay_second_win": 0.425,
+   "avg_length": 24.25,
+   "time_selfplay": 67.18188095092773,
+   "time_train": 16.45551371574402
+  },
+  {
+   "iteration": 2,
+   "n_samples": 6926,
+   "buffer": 14686,
+   "steps": 109,
+   "loss": 2.226234628519881,
+   "loss_pi": 1.7824101196516544,
+   "loss_v": 0.44382451515678967,
+   "selfplay_first_win": 0.73125,
+   "selfplay_draw": 0.05625,
+   "selfplay_second_win": 0.2125,
+   "avg_length": 21.64375,
+   "time_selfplay": 83.82494378089905,
+   "time_train": 21.314790964126587
+  },
+  {
+   "iteration": 3,
+   "n_samples": 6906,
+   "buffer": 21592,
+   "steps": 108,
+   "loss": 2.1304613992019936,
+   "loss_pi": 1.696509544496183,
+   "loss_v": 0.4339518533260734,
+   "selfplay_first_win": 0.61875,
+   "selfplay_draw": 0.04375,
+   "selfplay_second_win": 0.3375,
+   "avg_length": 21.58125,
+   "time_selfplay": 75.31874489784241,
+   "time_train": 20.401176929473877,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 13.7,
+     "ms_per_move_a": 366.0712248805316
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 15,
+     "draws": 0,
+     "losses": 15,
+     "win_rate": 0.5,
+     "score": 0.5,
+     "ci95": [
+      0.33153851227173764,
+      0.6684614877282624
+     ],
+     "avg_moves": 29.133333333333333,
+     "ms_per_move_a": 278.8286386717066
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 9,
+     "draws": 5,
+     "losses": 16,
+     "win_rate": 0.3,
+     "score": 0.38333333333333336,
+     "ci95": [
+      0.23223109763233762,
+      0.560922890358774
+     ],
+     "avg_moves": 33.96666666666667,
+     "ms_per_move_a": 276.48365226871823
+    }
+   },
+   "time_eval": 161.41585874557495
+  },
+  {
+   "iteration": 4,
+   "n_samples": 7490,
+   "buffer": 29082,
+   "steps": 118,
+   "loss": 2.091392266548286,
+   "loss_pi": 1.6430330357309115,
+   "loss_v": 0.4483592133905928,
+   "selfplay_first_win": 0.53125,
+   "selfplay_draw": 0.04375,
+   "selfplay_second_win": 0.425,
+   "avg_length": 23.40625,
+   "time_selfplay": 76.60252666473389,
+   "time_train": 18.968369007110596
+  },
+  {
+   "iteration": 5,
+   "n_samples": 7316,
+   "buffer": 36398,
+   "steps": 115,
+   "loss": 2.0824769289597223,
+   "loss_pi": 1.6170675775279169,
+   "loss_v": 0.4654093532458596,
+   "selfplay_first_win": 0.45,
+   "selfplay_draw": 0.05625,
+   "selfplay_second_win": 0.49375,
+   "avg_length": 22.8625,
+   "time_selfplay": 74.97487378120422,
+   "time_train": 21.69424557685852
+  },
+  {
+   "iteration": 6,
+   "n_samples": 8026,
+   "buffer": 44424,
+   "steps": 126,
+   "loss": 2.0547670627397205,
+   "loss_pi": 1.5822010655251761,
+   "loss_v": 0.4725660005259135,
+   "selfplay_first_win": 0.40625,
+   "selfplay_draw": 0.0875,
+   "selfplay_second_win": 0.50625,
+   "avg_length": 25.08125,
+   "time_selfplay": 78.37315440177917,
+   "time_train": 17.737481594085693,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 15.433333333333334,
+     "ms_per_move_a": 249.14680041736148
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 20,
+     "draws": 2,
+     "losses": 8,
+     "win_rate": 0.6666666666666666,
+     "score": 0.7,
+     "ci95": [
+      0.5212387898833981,
+      0.8333543735604105
+     ],
+     "avg_moves": 30.233333333333334,
+     "ms_per_move_a": 229.83719210567773
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 9,
+     "draws": 1,
+     "losses": 20,
+     "win_rate": 0.3,
+     "score": 0.31666666666666665,
+     "ci95": [
+      0.1793738816622653,
+      0.4955823851809099
+     ],
+     "avg_moves": 32.2,
+     "ms_per_move_a": 235.81474229201072
+    }
+   },
+   "time_eval": 115.75431323051453
+  },
+  {
+   "iteration": 7,
+   "n_samples": 7890,
+   "buffer": 44554,
+   "steps": 124,
+   "loss": 1.9632479240817409,
+   "loss_pi": 1.4944635658494887,
+   "loss_v": 0.4687843625583956,
+   "selfplay_first_win": 0.49375,
+   "selfplay_draw": 0.08125,
+   "selfplay_second_win": 0.425,
+   "avg_length": 24.65625,
+   "time_selfplay": 69.126882314682,
+   "time_train": 16.7933247089386
+  },
+  {
+   "iteration": 8,
+   "n_samples": 7634,
+   "buffer": 45262,
+   "steps": 120,
+   "loss": 1.9297401944796244,
+   "loss_pi": 1.4553332090377809,
+   "loss_v": 0.47440698569019635,
+   "selfplay_first_win": 0.50625,
+   "selfplay_draw": 0.09375,
+   "selfplay_second_win": 0.4,
+   "avg_length": 23.85625,
+   "time_selfplay": 67.36528730392456,
+   "time_train": 18.391088724136353
+  },
+  {
+   "iteration": 9,
+   "n_samples": 8672,
+   "buffer": 47028,
+   "steps": 136,
+   "loss": 1.8951444704742992,
+   "loss_pi": 1.4202689440811382,
+   "loss_v": 0.4748755277079694,
+   "selfplay_first_win": 0.4375,
+   "selfplay_draw": 0.1,
+   "selfplay_second_win": 0.4625,
+   "avg_length": 27.1,
+   "time_selfplay": 73.91247415542603,
+   "time_train": 18.64371609687805,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 15.566666666666666,
+     "ms_per_move_a": 245.1890248970005
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 19,
+     "draws": 1,
+     "losses": 10,
+     "win_rate": 0.6333333333333333,
+     "score": 0.65,
+     "ci95": [
+      0.4713708390926902,
+      0.7945740334901664
+     ],
+     "avg_moves": 29.733333333333334,
+     "ms_per_move_a": 234.00726919823813
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 9,
+     "draws": 0,
+     "losses": 21,
+     "win_rate": 0.3,
+     "score": 0.3,
+     "ci95": [
+      0.16664562643958933,
+      0.4787612101166018
+     ],
+     "avg_moves": 33.4,
+     "ms_per_move_a": 223.5765413643678
+    }
+   },
+   "time_eval": 115.709139585495
+  },
+  {
+   "iteration": 10,
+   "n_samples": 8530,
+   "buffer": 48068,
+   "steps": 134,
+   "loss": 1.8889782855759805,
+   "loss_pi": 1.4070646620508451,
+   "loss_v": 0.48191361796500076,
+   "selfplay_first_win": 0.40625,
+   "selfplay_draw": 0.0875,
+   "selfplay_second_win": 0.50625,
+   "avg_length": 26.65625,
+   "time_selfplay": 70.6495144367218,
+   "time_train": 18.363723754882812
+  },
+  {
+   "iteration": 11,
+   "n_samples": 9518,
+   "buffer": 50270,
+   "steps": 149,
+   "loss": 1.8696221945269795,
+   "loss_pi": 1.386317789954627,
+   "loss_v": 0.48330439977197837,
+   "selfplay_first_win": 0.41875,
+   "selfplay_draw": 0.05625,
+   "selfplay_second_win": 0.525,
+   "avg_length": 29.74375,
+   "time_selfplay": 76.99569368362427,
+   "time_train": 19.876619815826416
+  },
+  {
+   "iteration": 12,
+   "n_samples": 9228,
+   "buffer": 51472,
+   "steps": 145,
+   "loss": 1.8386906155224505,
+   "loss_pi": 1.3748994210670735,
+   "loss_v": 0.46379119609964303,
+   "selfplay_first_win": 0.3875,
+   "selfplay_draw": 0.09375,
+   "selfplay_second_win": 0.51875,
+   "avg_length": 28.8375,
+   "time_selfplay": 75.47899770736694,
+   "time_train": 21.322296380996704,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 13.5,
+     "ms_per_move_a": 223.83019428650317
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 21,
+     "draws": 2,
+     "losses": 7,
+     "win_rate": 0.7,
+     "score": 0.7333333333333333,
+     "ci95": [
+      0.5555169795568831,
+      0.8581750444608938
+     ],
+     "avg_moves": 30.266666666666666,
+     "ms_per_move_a": 236.02551290970723
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 12,
+     "draws": 2,
+     "losses": 16,
+     "win_rate": 0.4,
+     "score": 0.43333333333333335,
+     "ci95": [
+      0.2737723743061511,
+      0.6080299045459127
+     ],
+     "avg_moves": 31.1,
+     "ms_per_move_a": 219.24077853877216
+    }
+   },
+   "time_eval": 109.92271876335144
+  },
+  {
+   "iteration": 13,
+   "n_samples": 9262,
+   "buffer": 52844,
+   "steps": 145,
+   "loss": 1.8245093312756768,
+   "loss_pi": 1.360266188917489,
+   "loss_v": 0.46424314112498843,
+   "selfplay_first_win": 0.40625,
+   "selfplay_draw": 0.1,
+   "selfplay_second_win": 0.49375,
+   "avg_length": 28.94375,
+   "time_selfplay": 74.22047328948975,
+   "time_train": 26.065069913864136
+  },
+  {
+   "iteration": 14,
+   "n_samples": 9088,
+   "buffer": 54298,
+   "steps": 142,
+   "loss": 1.8011090058675954,
+   "loss_pi": 1.3487777407740202,
+   "loss_v": 0.45233126215531794,
+   "selfplay_first_win": 0.4,
+   "selfplay_draw": 0.1375,
+   "selfplay_second_win": 0.4625,
+   "avg_length": 28.4,
+   "time_selfplay": 72.03126788139343,
+   "time_train": 19.91804003715515
+  },
+  {
+   "iteration": 15,
+   "n_samples": 8592,
+   "buffer": 54218,
+   "steps": 135,
+   "loss": 1.7841100056966146,
+   "loss_pi": 1.3429761480402063,
+   "loss_v": 0.4411338510336699,
+   "selfplay_first_win": 0.4125,
+   "selfplay_draw": 0.125,
+   "selfplay_second_win": 0.4625,
+   "avg_length": 26.85,
+   "time_selfplay": 75.29464602470398,
+   "time_train": 18.68077850341797,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 14.7,
+     "ms_per_move_a": 246.04399868194218
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 13,
+     "draws": 3,
+     "losses": 14,
+     "win_rate": 0.43333333333333335,
+     "score": 0.48333333333333334,
+     "ci95": [
+      0.31684678325134663,
+      0.6536037864616692
+     ],
+     "avg_moves": 27.0,
+     "ms_per_move_a": 256.9452720974503
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 5,
+     "draws": 0,
+     "losses": 25,
+     "win_rate": 0.16666666666666666,
+     "score": 0.16666666666666666,
+     "ci95": [
+      0.07336434240351683,
+      0.33564705185680177
+     ],
+     "avg_moves": 27.533333333333335,
+     "ms_per_move_a": 235.53676936175108
+    }
+   },
+   "time_eval": 108.30121946334839
+  },
+  {
+   "iteration": 16,
+   "n_samples": 9378,
+   "buffer": 55066,
+   "steps": 147,
+   "loss": 1.7429215883722111,
+   "loss_pi": 1.3203674579153255,
+   "loss_v": 0.42255413288972815,
+   "selfplay_first_win": 0.41875,
+   "selfplay_draw": 0.11875,
+   "selfplay_second_win": 0.4625,
+   "avg_length": 29.30625,
+   "time_selfplay": 76.59261965751648,
+   "time_train": 21.627668142318726
+  },
+  {
+   "iteration": 17,
+   "n_samples": 8976,
+   "buffer": 54524,
+   "steps": 141,
+   "loss": 1.7506517839769946,
+   "loss_pi": 1.3154850750104756,
+   "loss_v": 0.43516670516196715,
+   "selfplay_first_win": 0.5,
+   "selfplay_draw": 0.09375,
+   "selfplay_second_win": 0.40625,
+   "avg_length": 28.05,
+   "time_selfplay": 76.84373259544373,
+   "time_train": 20.237032651901245
+  },
+  {
+   "iteration": 18,
+   "n_samples": 9500,
+   "buffer": 54796,
+   "steps": 149,
+   "loss": 1.7308610645716622,
+   "loss_pi": 1.2989780590838234,
+   "loss_v": 0.43188300268762064,
+   "selfplay_first_win": 0.5125,
+   "selfplay_draw": 0.125,
+   "selfplay_second_win": 0.3625,
+   "avg_length": 29.6875,
+   "time_selfplay": 82.16870880126953,
+   "time_train": 20.321849584579468,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 13.5,
+     "ms_per_move_a": 341.2694066665911
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 22,
+     "draws": 1,
+     "losses": 7,
+     "win_rate": 0.7333333333333333,
+     "score": 0.75,
+     "ci95": [
+      0.5729942229107943,
+      0.8702472313939666
+     ],
+     "avg_moves": 32.53333333333333,
+     "ms_per_move_a": 405.8306886181822
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 19,
+     "draws": 2,
+     "losses": 9,
+     "win_rate": 0.6333333333333333,
+     "score": 0.6666666666666666,
+     "ci95": [
+      0.48779725813830266,
+      0.807697044731538
+     ],
+     "avg_moves": 34.5,
+     "ms_per_move_a": 445.7937921153364
+    }
+   },
+   "time_eval": 198.61324262619019
+  },
+  {
+   "iteration": 19,
+   "n_samples": 9800,
+   "buffer": 55334,
+   "steps": 154,
+   "loss": 1.6848221792803182,
+   "loss_pi": 1.2639789581298828,
+   "loss_v": 0.42084322676256103,
+   "selfplay_first_win": 0.5125,
+   "selfplay_draw": 0.1875,
+   "selfplay_second_win": 0.3,
+   "avg_length": 30.625,
+   "time_selfplay": 132.30462169647217,
+   "time_train": 36.188836336135864
+  },
+  {
+   "iteration": 20,
+   "n_samples": 9284,
+   "buffer": 55530,
+   "steps": 146,
+   "loss": 1.6482127635446313,
+   "loss_pi": 1.244635081454499,
+   "loss_v": 0.4035776827025087,
+   "selfplay_first_win": 0.4625,
+   "selfplay_draw": 0.19375,
+   "selfplay_second_win": 0.34375,
+   "avg_length": 29.0125,
+   "time_selfplay": 101.3955008983612,
+   "time_train": 22.246200799942017
+  },
+  {
+   "iteration": 21,
+   "n_samples": 9678,
+   "buffer": 56616,
+   "steps": 152,
+   "loss": 1.6160179439343905,
+   "loss_pi": 1.2171923996586549,
+   "loss_v": 0.3988255505499087,
+   "selfplay_first_win": 0.40625,
+   "selfplay_draw": 0.15625,
+   "selfplay_second_win": 0.4375,
+   "avg_length": 30.24375,
+   "time_selfplay": 89.77197790145874,
+   "time_train": 25.738284587860107,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 11.366666666666667,
+     "ms_per_move_a": 297.4302112373387
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 19,
+     "draws": 1,
+     "losses": 10,
+     "win_rate": 0.6333333333333333,
+     "score": 0.65,
+     "ci95": [
+      0.4713708390926902,
+      0.7945740334901664
+     ],
+     "avg_moves": 31.566666666666666,
+     "ms_per_move_a": 280.5810216381391
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 10,
+     "draws": 0,
+     "losses": 20,
+     "win_rate": 0.3333333333333333,
+     "score": 0.3333333333333333,
+     "ci95": [
+      0.19230295526846194,
+      0.5122027418616973
+     ],
+     "avg_moves": 32.36666666666667,
+     "ms_per_move_a": 269.35470704009515
+    }
+   },
+   "time_eval": 129.40018844604492
+  },
+  {
+   "iteration": 22,
+   "n_samples": 9362,
+   "buffer": 56600,
+   "steps": 147,
+   "loss": 1.606915630450865,
+   "loss_pi": 1.1976904195993126,
+   "loss_v": 0.4092252084187099,
+   "selfplay_first_win": 0.43125,
+   "selfplay_draw": 0.10625,
+   "selfplay_second_win": 0.4625,
+   "avg_length": 29.25625,
+   "time_selfplay": 85.06210827827454,
+   "time_train": 23.861146926879883
+  },
+  {
+   "iteration": 23,
+   "n_samples": 10026,
+   "buffer": 57650,
+   "steps": 157,
+   "loss": 1.575993041324008,
+   "loss_pi": 1.1742429482709071,
+   "loss_v": 0.4017500953309855,
+   "selfplay_first_win": 0.50625,
+   "selfplay_draw": 0.1375,
+   "selfplay_second_win": 0.35625,
+   "avg_length": 31.33125,
+   "time_selfplay": 90.5992910861969,
+   "time_train": 34.66468286514282
+  },
+  {
+   "iteration": 24,
+   "n_samples": 10558,
+   "buffer": 58708,
+   "steps": 165,
+   "loss": 1.5435753865675492,
+   "loss_pi": 1.145353821552161,
+   "loss_v": 0.3982215716983333,
+   "selfplay_first_win": 0.39375,
+   "selfplay_draw": 0.2375,
+   "selfplay_second_win": 0.36875,
+   "avg_length": 32.99375,
+   "time_selfplay": 134.21044945716858,
+   "time_train": 34.47495651245117,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 13.433333333333334,
+     "ms_per_move_a": 311.16825550416945
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 24,
+     "draws": 0,
+     "losses": 6,
+     "win_rate": 0.8,
+     "score": 0.8,
+     "ci95": [
+      0.6269395261897256,
+      0.9049502189759876
+     ],
+     "avg_moves": 31.3,
+     "ms_per_move_a": 520.02571075887
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 16,
+     "draws": 4,
+     "losses": 10,
+     "win_rate": 0.5333333333333333,
+     "score": 0.6,
+     "ci95": [
+      0.42320052498273836,
+      0.7540960567391659
+     ],
+     "avg_moves": 35.2,
+     "ms_per_move_a": 608.5138981105559
+    }
+   },
+   "time_eval": 265.52756667137146
+  },
+  {
+   "iteration": 25,
+   "n_samples": 9680,
+   "buffer": 58588,
+   "steps": 152,
+   "loss": 1.5249840264257633,
+   "loss_pi": 1.1245670773481067,
+   "loss_v": 0.4004169453523661,
+   "selfplay_first_win": 0.4875,
+   "selfplay_draw": 0.13125,
+   "selfplay_second_win": 0.38125,
+   "avg_length": 30.25,
+   "time_selfplay": 150.8256220817566,
+   "time_train": 29.81207513809204
+  },
+  {
+   "iteration": 26,
+   "n_samples": 9774,
+   "buffer": 59078,
+   "steps": 153,
+   "loss": 1.5177776081110137,
+   "loss_pi": 1.1041978013281728,
+   "loss_v": 0.4135798089254915,
+   "selfplay_first_win": 0.38125,
+   "selfplay_draw": 0.15625,
+   "selfplay_second_win": 0.4625,
+   "avg_length": 30.54375,
+   "time_selfplay": 96.30626273155212,
+   "time_train": 26.204594373703003
+  },
+  {
+   "iteration": 27,
+   "n_samples": 9422,
+   "buffer": 58822,
+   "steps": 148,
+   "loss": 1.5130199556415145,
+   "loss_pi": 1.0945103474565454,
+   "loss_v": 0.4185096091918043,
+   "selfplay_first_win": 0.40625,
+   "selfplay_draw": 0.14375,
+   "selfplay_second_win": 0.45,
+   "avg_length": 29.44375,
+   "time_selfplay": 96.44882488250732,
+   "time_train": 36.60024309158325,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 13.1,
+     "ms_per_move_a": 456.02196470809207
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 21,
+     "draws": 1,
+     "losses": 8,
+     "win_rate": 0.7,
+     "score": 0.7166666666666667,
+     "ci95": [
+      0.5382687992491174,
+      0.8458737944816755
+     ],
+     "avg_moves": 32.13333333333333,
+     "ms_per_move_a": 365.48099422601734
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 19,
+     "draws": 0,
+     "losses": 11,
+     "win_rate": 0.6333333333333333,
+     "score": 0.6333333333333333,
+     "ci95": [
+      0.45513246433604937,
+      0.7812629779598231
+     ],
+     "avg_moves": 32.333333333333336,
+     "ms_per_move_a": 267.3649221765799
+    }
+   },
+   "time_eval": 156.35679125785828
+  },
+  {
+   "iteration": 28,
+   "n_samples": 9446,
+   "buffer": 58906,
+   "steps": 148,
+   "loss": 1.4799613372699634,
+   "loss_pi": 1.081045440725378,
+   "loss_v": 0.39891590077329325,
+   "selfplay_first_win": 0.35625,
+   "selfplay_draw": 0.25625,
+   "selfplay_second_win": 0.3875,
+   "avg_length": 29.51875,
+   "time_selfplay": 107.79821872711182,
+   "time_train": 33.83395504951477
+  },
+  {
+   "iteration": 29,
+   "n_samples": 9872,
+   "buffer": 58752,
+   "steps": 155,
+   "loss": 1.4688631034666493,
+   "loss_pi": 1.0745906099196403,
+   "loss_v": 0.3942724968156507,
+   "selfplay_first_win": 0.425,
+   "selfplay_draw": 0.09375,
+   "selfplay_second_win": 0.48125,
+   "avg_length": 30.85,
+   "time_selfplay": 128.7331349849701,
+   "time_train": 24.35827612876892
+  },
+  {
+   "iteration": 30,
+   "n_samples": 9168,
+   "buffer": 57362,
+   "steps": 144,
+   "loss": 1.4969857806960742,
+   "loss_pi": 1.0891559769709904,
+   "loss_v": 0.40782980455292595,
+   "selfplay_first_win": 0.4,
+   "selfplay_draw": 0.1125,
+   "selfplay_second_win": 0.4875,
+   "avg_length": 28.65,
+   "time_selfplay": 100.56662464141846,
+   "time_train": 25.273887395858765,
+   "eval": {
+    "random": {
+     "a": "AlphaZero(n=100)",
+     "b": "random",
+     "n": 30,
+     "wins": 30,
+     "draws": 0,
+     "losses": 0,
+     "win_rate": 1.0,
+     "score": 1.0,
+     "ci95": [
+      0.8864829086095221,
+      1.0
+     ],
+     "avg_moves": 13.1,
+     "ms_per_move_a": 332.465752450505
+    },
+    "MCTS(n=200, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=200, c=1.41, random)",
+     "n": 30,
+     "wins": 23,
+     "draws": 1,
+     "losses": 6,
+     "win_rate": 0.7666666666666667,
+     "score": 0.7833333333333333,
+     "ci95": [
+      0.6086891310022231,
+      0.893651183876506
+     ],
+     "avg_moves": 31.666666666666668,
+     "ms_per_move_a": 315.21553966452007
+    },
+    "MCTS(n=1000, c=1.41, random)": {
+     "a": "AlphaZero(n=100)",
+     "b": "MCTS(n=1000, c=1.41, random)",
+     "n": 30,
+     "wins": 15,
+     "draws": 2,
+     "losses": 13,
+     "win_rate": 0.5,
+     "score": 0.5333333333333333,
+     "ci95": [
+      0.3614201328152505,
+      0.6976787277587178
+     ],
+     "avg_moves": 35.1,
+     "ms_per_move_a": 482.29636774182785
+    }
+   },
+   "time_eval": 199.3286473751068
+  }
+ ]
+}

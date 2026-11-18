@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+logs/
+# on ne versionne que les checkpoints finaux (voir README)
+checkpoints/*/iter_*.pt
+!checkpoints/*/iter_000.pt

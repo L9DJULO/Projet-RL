@@ -1,0 +1,40 @@
+[
+ {
+  "a": "MCTS(n=0, c=1.41, heuristic)",
+  "b": "MCTS(n=0, c=1.41, random)",
+  "n": 100,
+  "wins": 38,
+  "draws": 1,
+  "losses": 61,
+  "win_rate": 0.38,
+  "score": 0.385,
+  "ci95": [
+   0.2955658470814419,
+   0.48294295863803854
+  ],
+  "avg_moves": 23.56,
+  "ms_per_move_a": 50.64740614352093,
+  "x": 0.05,
+  "wins_as_first": 21,
+  "games_as_first": 50
+ },
+ {
+  "a": "MCTS(n=0, c=1.41, heuristic)",
+  "b": "MCTS(n=0, c=1.41, random)",
+  "n": 100,
+  "wins": 39,
+  "draws": 4,
+  "losses": 57,
+  "win_rate": 0.39,
+  "score": 0.41,
+  "ci95": [
+   0.31867157095664655,
+   0.5079874943890338
+  ],
+  "avg_moves": 31.95,
+  "ms_per_move_a": 198.76600639883503,
+  "x": 0.2,
+  "wins_as_first": 21,
+  "games_as_first": 50
+ }
+]

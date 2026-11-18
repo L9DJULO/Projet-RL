@@ -1,0 +1,270 @@
+{
+ "C1": [
+  {
+   "a": "AlphaZero(n=16)",
+   "b": "MCTS(n=16, c=1.41, random)",
+   "n": 20,
+   "wins": 7,
+   "draws": 6,
+   "losses": 7,
+   "win_rate": 0.35,
+   "score": 0.5,
+   "ci95": [
+    0.2992949144298199,
+    0.7007050855701801
+   ],
+   "avg_moves": 74.55,
+   "ms_per_move_a": 33.36671733917663,
+   "tag": "n=16",
+   "x": 16
+  },
+  {
+   "a": "AlphaZero(n=32)",
+   "b": "MCTS(n=32, c=1.41, random)",
+   "n": 20,
+   "wins": 6,
+   "draws": 3,
+   "losses": 11,
+   "win_rate": 0.3,
+   "score": 0.375,
+   "ci95": [
+    0.1997684330147064,
+    0.5905140983590269
+   ],
+   "avg_moves": 71.3,
+   "ms_per_move_a": 67.95971250057539,
+   "tag": "n=32",
+   "x": 32
+  },
+  {
+   "a": "AlphaZero(n=64)",
+   "b": "MCTS(n=64, c=1.41, random)",
+   "n": 20,
+   "wins": 3,
+   "draws": 5,
+   "losses": 12,
+   "win_rate": 0.15,
+   "score": 0.275,
+   "ci95": [
+    0.12838905064786596,
+    0.494119505824854
+   ],
+   "avg_moves": 80.0,
+   "ms_per_move_a": 132.30920174792118,
+   "tag": "n=64",
+   "x": 64
+  },
+  {
+   "a": "AlphaZero(n=128)",
+   "b": "MCTS(n=128, c=1.41, random)",
+   "n": 20,
+   "wins": 6,
+   "draws": 2,
+   "losses": 12,
+   "win_rate": 0.3,
+   "score": 0.35,
+   "ci95": [
+    0.18118954786794464,
+    0.5671494897805354
+   ],
+   "avg_moves": 80.0,
+   "ms_per_move_a": 260.6264838737843,
+   "tag": "n=128",
+   "x": 128
+  }
+ ],
+ "C2": [
+  {
+   "a": "AlphaZero(n=100)",
+   "b": "MCTS(n=10, c=1.41, random)",
+   "n": 20,
+   "wins": 13,
+   "draws": 2,
+   "losses": 5,
+   "win_rate": 0.65,
+   "score": 0.7,
+   "ci95": [
+    0.4810232237710206,
+    0.854524726031006
+   ],
+   "avg_moves": 77.45,
+   "ms_per_move_a": 210.6104630490197,
+   "tag": "AZ(100) vs MCTS(10)",
+   "x": 10
+  },
+  {
+   "a": "AlphaZero(n=100)",
+   "b": "MCTS(n=25, c=1.41, random)",
+   "n": 20,
+   "wins": 11,
+   "draws": 5,
+   "losses": 4,
+   "win_rate": 0.55,
+   "score": 0.675,
+   "ci95": [
+    0.45668901012850516,
+    0.8369154459482683
+   ],
+   "avg_moves": 80.0,
+   "ms_per_move_a": 212.5113000008423,
+   "tag": "AZ(100) vs MCTS(25)",
+   "x": 25
+  },
+  {
+   "a": "AlphaZero(n=100)",
+   "b": "MCTS(n=50, c=1.41, random)",
+   "n": 20,
+   "wins": 8,
+   "draws": 1,
+   "losses": 11,
+   "win_rate": 0.4,
+   "score": 0.425,
+   "ci95": [
+    0.23828280814434913,
+    0.6358867106798908
+   ],
+   "avg_moves": 76.65,
+   "ms_per_move_a": 205.8528511739833,
+   "tag": "AZ(100) vs MCTS(50)",
+   "x": 50
+  }
+ ],
+ "C3": [
+  {
+   "a": "AZ-iter0(100)",
+   "b": "MCTS(n=100, c=1.41, random)",
+   "n": 20,
+   "wins": 0,
+   "draws": 1,
+   "losses": 19,
+   "win_rate": 0.0,
+   "score": 0.025,
+   "ci95": [
+    0.002615477056236784,
+    0.20045814216394975
+   ],
+   "avg_moves": 77.2,
+   "ms_per_move_a": 201.81122435390444,
+   "tag": "réseau non entraîné + MCTS(100) vs MCTS pur(100)"
+  },
+  {
+   "a": "AlphaZero(n=100)",
+   "b": "MCTS(n=100, c=1.41, random)",
+   "n": 20,
+   "wins": 3,
+   "draws": 5,
+   "losses": 12,
+   "win_rate": 0.15,
+   "score": 0.275,
+   "ci95": [
+    0.12838905064786596,
+    0.494119505824854
+   ],
+   "avg_moves": 78.85,
+   "ms_per_move_a": 203.19351675096712,
+   "tag": "réseau entraîné + MCTS(100) vs MCTS pur(100)"
+  },
+  {
+   "a": "Policy-net",
+   "b": "random",
+   "n": 20,
+   "wins": 11,
+   "draws": 6,
+   "losses": 3,
+   "win_rate": 0.55,
+   "score": 0.7,
+   "ci95": [
+    0.4810232237710206,
+    0.854524726031006
+   ],
+   "avg_moves": 80.0,
+   "ms_per_move_a": 1.9797802501852857,
+   "tag": "réseau seul (sans recherche) vs aléatoire"
+  },
+  {
+   "a": "Policy-net",
+   "b": "MCTS(n=100, c=1.41, random)",
+   "n": 20,
+   "wins": 0,
+   "draws": 1,
+   "losses": 19,
+   "win_rate": 0.0,
+   "score": 0.025,
+   "ci95": [
+    0.002615477056236784,
+    0.20045814216394975
+   ],
+   "avg_moves": 77.1,
+   "ms_per_move_a": 2.3678530487153395,
+   "tag": "réseau seul (sans recherche) vs MCTS pur(100)"
+  },
+  {
+   "a": "AlphaZero(n=100)",
+   "b": "MCTS-rollouts-complets(200)",
+   "n": 20,
+   "wins": 2,
+   "draws": 2,
+   "losses": 16,
+   "win_rate": 0.1,
+   "score": 0.15,
+   "ci95": [
+    0.05236779195949584,
+    0.36042329588695743
+   ],
+   "avg_moves": 80.0,
+   "ms_per_move_a": 199.40250087391178,
+   "tag": "réseau entraîné + MCTS(100) vs MCTS pur(200) sans heuristique"
+  },
+  {
+   "a": "MCTS(n=200, c=1.41, random)",
+   "b": "MCTS-rollouts-complets(200)",
+   "n": 20,
+   "wins": 14,
+   "draws": 1,
+   "losses": 5,
+   "win_rate": 0.7,
+   "score": 0.725,
+   "ci95": [
+    0.505880494175146,
+    0.871610949352134
+   ],
+   "avg_moves": 77.15,
+   "ms_per_move_a": 429.4245719273676,
+   "tag": "MCTS pur(200) avec heuristique vs sans heuristique"
+  },
+  {
+   "a": "AZ-final",
+   "b": "AZ-iter_010",
+   "n": 20,
+   "wins": 10,
+   "draws": 10,
+   "losses": 0,
+   "win_rate": 0.5,
+   "score": 0.75,
+   "ci95": [
+    0.5312949900419365,
+    0.888139947210597
+   ],
+   "avg_moves": 80.0,
+   "ms_per_move_a": 211.0286214986263,
+   "tag": "final vs iter_010.pt (AZ 100 sim.)"
+  },
+  {
+   "a": "AZ-final",
+   "b": "AZ-iter0",
+   "n": 20,
+   "wins": 20,
+   "draws": 0,
+   "losses": 0,
+   "win_rate": 1.0,
+   "score": 1.0,
+   "ci95": [
+    0.8388698745050667,
+    1.0
+   ],
+   "avg_moves": 80.0,
+   "ms_per_move_a": 220.41526549874106,
+   "tag": "final vs iter_000 (AZ 100 sim.)"
+  }
+ ]
+}
