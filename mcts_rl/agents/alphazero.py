@@ -151,15 +151,17 @@ class AlphaZeroAgent(Agent):
     def select_action(self, state: GameState) -> int:
         legal = state.legal_actions()
         if len(legal) == 1:
+            self.last_root = None  # coup forcé : pas de recherche
             return legal[0]
         root = self.mcts.search(state, add_noise=False)
         self.last_root = root
         return sample_action(root, self.temperature, self.rng)
 
     def root_stats(self):
+        """[(action, visites, valeur moyenne, prior du réseau)] de la dernière recherche."""
         if self.last_root is None:
             return []
-        return sorted(((a, c.N, c.W / c.N if c.N else 0.0) for a, c in self.last_root.children.items()),
+        return sorted(((a, c.N, c.W / c.N if c.N else 0.0, c.P) for a, c in self.last_root.children.items()),
                       key=lambda t: -t[1])
 
 

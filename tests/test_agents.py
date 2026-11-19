@@ -62,6 +62,29 @@ def test_network_shapes():
         assert len(legal) == len(priors) and abs(priors.sum() - 1) < 1e-5 and -1 <= value <= 1
 
 
+def test_search_stats_display():
+    from mcts_rl.arena import format_search_stats
+    s = Connect4State.from_moves("010101")
+    mcts = MCTSAgent(n_simulations=200, seed=0)
+    mcts.select_action(s)
+    text = format_search_stats(mcts, s)
+    assert "200 visites" in text and "victoire estimée" in text
+    az = AlphaZeroAgent(uniform_evaluator, n_simulations=50, seed=0)
+    az.select_action(s)
+    assert "réseau" in format_search_stats(az, s)
+
+
+def test_no_stale_stats_on_forced_move():
+    s = Connect4State.from_moves("000000111111222222444444555555")  # colonnes 3 et 6 libres
+    agent = MCTSAgent(n_simulations=50, seed=0)
+    agent.select_action(s)
+    assert agent.root_stats()
+    s = Connect4State.from_moves("000000111111222222444444555555666666")  # seule la colonne 3 reste
+    assert s.legal_actions() == [3]
+    agent.select_action(s)
+    assert agent.root_stats() == []
+
+
 def test_play_game_chess_random():
     r = play_game(RandomAgent(0), RandomAgent(1), game="chess-micro")
     assert r["winner"] in (-1, 0, 1)

@@ -55,6 +55,10 @@ def main():
     p.add_argument("--p2", default="mcts:1000", help="second joueur (O / Noirs)")
     p.add_argument("--games", type=int, default=1, help="nombre de parties (sans humain)")
     p.add_argument("--seed", type=int, default=None)
+    p.add_argument("--show-stats", action="store_true",
+                   help="démo : affiche la réflexion de l'IA à chaque coup (visites, %% de victoire, prior du réseau)")
+    p.add_argument("--step", action="store_true",
+                   help="démo : attend Entrée après chaque coup d'une IA (pour commenter)")
     args = p.parse_args()
 
     s1, s2 = parse_player(args.p1, args.game), parse_player(args.p2, args.game)
@@ -65,7 +69,7 @@ def main():
         return
     a1, a2 = make_agent(s1, seed=args.seed), make_agent(s2, seed=args.seed)
     for _ in range(args.games):
-        play_game(a1, a2, game=args.game, verbose=True)
+        play_game(a1, a2, game=args.game, verbose=True, show_stats=args.show_stats, step=args.step)
 
 
 if __name__ == "__main__":

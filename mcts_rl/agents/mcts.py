@@ -132,6 +132,7 @@ class MCTSAgent(Agent):
     def select_action(self, state: GameState) -> int:
         legal = state.legal_actions()
         if len(legal) == 1:
+            self.last_root = None  # coup forcé : pas de recherche
             return legal[0]
         root = self.search(state)
         # "robust child" : l'enfant le plus visité

@@ -8,13 +8,41 @@ from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass, field
 from typing import List, Optional
 
-from .agents import Agent, make_agent
+from .agents import Agent, HumanAgent, make_agent
 from .games import make_game
 
 
+def format_search_stats(agent: Agent, state, top: int = 5) -> str:
+    """Résumé lisible de la dernière recherche d'un agent MCTS / AlphaZero (pour la démo).
+
+    Pour chaque coup candidat : nombre de visites, part des visites, estimation de victoire
+    (valeur moyenne Q ramenée en %) et, pour AlphaZero, le prior P donné par le réseau.
+    """
+    stats = agent.root_stats() if hasattr(agent, "root_stats") else []
+    if not stats:
+        return ""
+    total = sum(s[1] for s in stats)
+    has_prior = len(stats[0]) > 3
+    lines = [f"  Réflexion de {agent.name} : {total} visites réparties sur {len(stats)} coups"]
+    for s in stats[:top]:
+        action, n, q = s[0], s[1], s[2]
+        share = n / total if total else 0.0
+        bar = "#" * max(1, round(25 * share))
+        prior = f"  réseau {100 * s[3]:4.1f} %" if has_prior else ""
+        lines.append(f"    {state.action_to_str(action):>6} : {n:6d} visites ({100 * share:5.1f} %)"
+                     f"  victoire estimée {50 * (q + 1):5.1f} %{prior}  {bar}")
+    if len(stats) > top:
+        lines.append(f"    ... ({len(stats) - top} autres coups)")
+    return "\n".join(lines)
+
+
 def play_game(agent_first: Agent, agent_second: Agent, game: str = "connect4",
-              verbose: bool = False, state=None) -> dict:
-    """Joue une partie. Renvoie le vainqueur (+1 = premier joueur, -1 = second, 0 = nul)."""
+              verbose: bool = False, state=None, show_stats: bool = False, step: bool = False) -> dict:
+    """Joue une partie. Renvoie le vainqueur (+1 = premier joueur, -1 = second, 0 = nul).
+
+    show_stats : affiche après chaque coup d'un agent le détail de sa recherche (démo)
+    step       : attend Entrée après chaque coup d'un agent (démo pas à pas)
+    """
     state = state if state is not None else make_game(game)
     agents = {1: agent_first, -1: agent_second}
     for a in agents.values():
@@ -30,10 +58,16 @@ def play_game(agent_first: Agent, agent_second: Agent, game: str = "connect4",
         times[player] += time.perf_counter() - t0
         if verbose:
             print(f"{agents[player].name} ({'1er' if player == 1 else '2nd'}) joue {state.action_to_str(action)}")
+            if show_stats:
+                summary = format_search_stats(agents[player], state)
+                if summary:
+                    print(summary)
         state = state.apply(action)
         n_moves += 1
         if verbose:
             print(state.render(), "\n")
+            if step and not isinstance(agents[player], HumanAgent) and not state.is_terminal():
+                input("  [Entrée pour continuer] ")
     w = state.winner()
     if verbose:
         print("Résultat :", {1: f"victoire de {agent_first.name}", -1: f"victoire de {agent_second.name}",

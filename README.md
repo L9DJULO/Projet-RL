@@ -1,4 +1,4 @@
-# MCTS et Self-Play pour jeux à deux joueurs (Puissance 4 → Échecs)
+﻿# MCTS et Self-Play pour jeux à deux joueurs (Puissance 4 → Échecs)
 
 Agent de jeu à information complète fondé sur **Monte Carlo Tree Search**, d'abord
 « pur » (UCT + rollouts) sur Puissance 4, puis guidé par un **réseau policy/value
@@ -24,7 +24,7 @@ Le rapport complet (méthode, expériences, résultats, analyse) est dans **[RAP
 
 ```bash
 pip install -r requirements.txt      # numpy, torch (CPU suffit), chess (python-chess), matplotlib, pytest
-python -m pytest -q                  # 26 tests
+python -m pytest -q                  # 28 tests
 ```
 
 ## Jouer
@@ -42,6 +42,28 @@ python scripts/play.py --game chess-mini --p1 human --p2 az:checkpoints/chess-mi
 # Match entre deux agents sur 50 parties (couleurs alternées, en parallèle)
 python scripts/play.py --p1 mcts:500 --p2 random --games 50
 ```
+
+### Mode démo : voir l'IA réfléchir
+
+`--show-stats` affiche, après chaque coup d'une IA, le détail de sa recherche : les coups candidats,
+leur nombre de visites, l'estimation de victoire et, pour AlphaZero, la probabilité donnée par le
+réseau avant la recherche. `--step` attend Entrée entre les coups pour pouvoir commenter.
+
+```bash
+python scripts/play.py --p1 human --p2 az:checkpoints/connect4/latest.pt:200 --show-stats
+python scripts/play.py --p1 az:checkpoints/connect4/latest.pt:200 --p2 mcts:1000 --show-stats --step
+```
+
+```
+AlphaZero(n=200) (1er) joue 1
+  Réflexion de AlphaZero(n=200) : 200 visites réparties sur 7 coups
+         1 :     66 visites ( 33.0 %)  victoire estimée  55.8 %  réseau  8.7 %  ########
+         5 :     65 visites ( 32.5 %)  victoire estimée  57.4 %  réseau 10.3 %  ########
+         3 :     60 visites ( 30.0 %)  victoire estimée  45.7 %  réseau 69.8 %  ########
+```
+
+On y voit le rôle de chaque élément : le réseau propose (colonne 3 à 70 %), la recherche vérifie,
+puis corrige en fonction des valeurs trouvées.
 
 Joueurs disponibles : `human`, `random`, `mcts[:N[:c]]`, `mcts-h[:N[:c]]` (rollouts heuristiques),
 `az:CHECKPOINT[:N]` (MCTS + réseau), `policy:CHECKPOINT` (réseau seul, sans recherche).
